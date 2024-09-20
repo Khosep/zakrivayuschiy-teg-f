@@ -1,1 +1,92 @@
-/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+/* Основная тема - светлая*/
+
+:root {
+  /* Тема */
+  --bg-color: #fff;
+  --accent-color: #000;
+  --text-color: #000;
+  --mix-blend-color: #fff;
+  --card-label-stroke-color: #fff;
+  --card-font-weight-title: 700;
+  --card-font-weight-text: 400;
+  /* background-image variables */
+  --bg-strip-color: #d3d3d3;
+  --bg-saturation-color-start: #e7e7e7;
+  --bg-saturation-color-end: #1a1a1a;
+  --bg-gradient-start: 0.01%;
+
+  --heart-contour-color: var(--accent-color);
+  --heart-body-color: #f00;
+  --heart-sparks-color: var(--heart-main-body-color);
+
+  /* Общие */
+  /* stylelint-disable-next-line value-keyword-case */
+  --main-font: Inter-Variable;
+  --accent-font: 'PressStart2P-Regular';
+  --main-text-size: 18px;
+  --bg-image: repeating-linear-gradient(
+      to right,
+      var(--bg-strip-color) 0 2px,
+      transparent 2px 4px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--bg-strip-color) 0 2px,
+      transparent 2px 4px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--bg-saturation-color-start) var(--bg-gradient-start),
+      var(--bg-saturation-color-end)
+    );
+
+  --max-inline-size: clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem);
+  --max-inline-size-small: 100%;
+
+  --header-margin-block: 100px;
+  --header-padding-block: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem) 25px;
+  --header-logo-font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  --header-logo-font-size-small: clamp(
+    2.75rem,
+    0.9318rem + 9.0909vw,
+    3.0625rem
+  );
+
+  --header-title-font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  --header-gap: 25px;
+  --header-logo-group-gap: 20px;
+  --header-menu-gap: 14px;
+  --header-menu-font-size: 14px;
+
+  --duration-quick: 0.1s;
+  --duration-small: 0.3s;
+  --duration-medium: 0.5s;
+
+  --delay-small: 0.03s;
+  --delay-medium: 0.05s;
+  --delay-medium-plus: 0.06s;
+  --delay-long: 0.1s;
+
+  --main-border: 2px solid var(--accent-color);
+  /* 13 -> 25 for 375 -> 1440 */
+  --card_label-right-position: clamp(
+    0.8125rem,
+    0.5484rem + 1.1268vw,
+    1.5625rem
+  );
+  /* 306 -> 335 for 375 -> 1440 */
+  --safe-button-size: clamp(19.125rem, 18.4868rem + 2.723vw, 20.9375rem);
+  --dialog-backdrop-color: rgb(0 0 0 / 0.75);
+  /* 341 -> 353 for 375 -> 1440 */
+  --dialog-max-width: clamp(21.3125rem, 21.0484rem + 1.1268vw, 22.0625rem);
+  /* 305 -> 341 for 320 -> 375 */
+  --dialog-max-width-small: clamp(
+    19.0625rem,
+    5.9716rem + 65.4545vw,
+    21.3125rem
+  );
+  /* 40 -> 28 for 375 -> 1440 */
+  --dialog-padding-inline: clamp(1.75rem, 2.7641rem + -1.1268vw, 2.5rem);
+  /* 20 -> 40 for 320 -> 375 */
+  --dialog-padding-inline-small: clamp(1.25rem, -6.0227rem + 36.3636vw, 2.5rem);
+}

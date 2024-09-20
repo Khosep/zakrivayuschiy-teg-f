@@ -4,3 +4,51 @@
 ✦ theme-light — класс светлой темы
 ✦ не забудьте описать стили для изменения темы через медизапрос пользовательских предпочтений
 */
+
+:root.theme-dark {
+  --bg-color: #000;
+  --accent-color: #00cc14;
+  --text-color: #00cc14;
+  --mix-blend-color: #00cc14;
+  --card-label-stroke-color: #000;
+  --card-font-weight-title: 785;
+  --card-font-weight-text: 465;
+  /* background-image variables */
+  --bg-strip-color: #000;
+  --bg-saturation-color-start: #007f0c;
+  --bg-saturation-color-end: #004306;
+  --bg-gradient-start: 0;
+}
+
+:root.theme-light {
+  --bg-color: #fff;
+  --accent-color: #000;
+  --mix-blend-color: #fff;
+  --card-label-stroke-color: #fff;
+  --text-color: #000;
+  --mix-blend-text-color: #fff;
+  --card-font-weight-title: 700;
+  --card-font-weight-text: 400;
+  /* background-image variables */
+  --bg-strip-color: #d3d3d3;
+  --bg-saturation-color-start: #e7e7e7;
+  --bg-saturation-color-end: #1a1a1a;
+  --bg-gradient-start: 0.01%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #000;
+    --accent-color: #00cc14;
+    --mix-blend-color: #00cc14;
+    --text-color: #00cc14;
+    --mix-blend-text-color: #00cc14;
+    --card-font-weight-title: 785;
+    --card-font-weight-text: 465;
+    /* background-image variables */
+    --bg-strip-color: #000;
+    --bg-saturation-color-start: #007f0c;
+    --bg-saturation-color-end: #004306;
+    --bg-gradient-start: 0;
+  }
+}

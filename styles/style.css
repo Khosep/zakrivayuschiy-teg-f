@@ -11,10 +11,369 @@
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
-
 */
 
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  max-inline-size: var(--max-inline-size);
+  background: fixed var(--bg-image) var(--bg-color) center / cover;
+  font-family: var(--main-font, Inter-Variable), sans-serif;
+  font-variation-settings: 'wght' var(--card-font-weight-text, 400);
+  color: var(--text-color);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  gap: var(--header-gap);
+  border: var(--main-border);
+  margin-block: var(--header-margin-block);
+  padding-block: var(--header-padding-block);
+  background-color: var(--bg-color);
+  font-family: var(--accent-font, PressStart2P-Regular), sans-serif;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* ----- HEADER: logo-group ----- */
+
+.header__logo-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--header-logo-group-gap);
+}
+
+.header__logo-group__link {
+  font-size: var(--header-logo-font-size);
+}
+
+.header__logo-group__link:focus {
+  outline: none;
+}
+
+.header__logo-group__title {
+  font-size: var(--header-title-font-size);
+  text-transform: uppercase;
+}
+
+/* ----- HEADER: menu ----- */
+
+.theme-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--header-menu-gap);
+  font-size: var(--header-menu-font-size);
+  line-height: 1;
+}
+
+.theme-menu__button {
+  position: relative;
+  text-transform: uppercase;
+  inset-inline-start: 10px;
+}
+
+.theme-menu__button,
+.theme-menu__button:hover,
+.theme-menu__button:focus-visible,
+.button-border,
+.button-border:hover,
+.button-border:focus-visible {
+  transition: var(--duration-small);
+}
+
+.theme-menu__button:hover,
+.theme-menu__button:focus-visible,
+.theme-menu__button:disabled {
+  opacity: 0.6;
+}
+
+.theme-menu__button:disabled {
+  pointer-events: none;
+}
+
+.theme-menu__button:disabled::before {
+  position: absolute;
+  content: '▶';
+  inset-inline-start: -20px;
+}
+
+.theme-menu__button::after {
+  content: '';
+  position: absolute;
+  display: block;
+  inline-size: 100%;
+  block-size: 2px;
+  margin-block-start: 2px;
+  transform: scaleX(0);
+  transform-origin: 0;
+  transition: var(--duration-small);
+  background-color: currentColor;
+}
+
+.theme-menu__button:focus-visible::after {
+  transform: scaleX(1);
+  transition: transform var(--duration-small);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+/* ----- MAIN: Cards ----- */
+
+.cards__list {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.cards__item {
+  display: flex;
+  flex-direction: column;
+  border: var(--main-border);
+  background-color: var(--bg-color);
+}
+
+.cards__item__title {
+  font-variation-settings: 'wght' var(--card-font-weight-title);
+  font-size: 18px;
+  line-height: 1.21;
+  padding-inline: 10px;
+  padding-block: 4.5px;
+}
+
+.cards__item__picture {
+  position: relative;
+  border-block: var(--main-border);
+}
+
+.card_label {
+  position: absolute;
+  inset-block-start: 25px;
+  inset-inline-end: var(--card_label-right-position);
+  z-index: 1;
+  font-family: var(----accent-font, 'PressStart2P-Regular'), sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+  background-color: transparent;
+  mix-blend-mode: hard-light;
+  opacity: 0.5;
+  -webkit-text-stroke: 1px var(--card-label-stroke-color);
+}
+
+.card_image {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--bg-color);
+  object-fit: cover;
+  object-position: center;
+}
+
+.cards__item__content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.cards__item__content-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 27px;
+  /*   padding: 23px 25px 25px; */
+  padding: 25px;
+}
+
+.card__text {
+  font-size: 18px;
+  line-height: 1.167;
+}
+
+.cards__item__content-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 6px;
+  padding-inline-end: 25px;
+  padding-block-end: 25px;
+}
+
+.card__icon-button {
+  display: flex;
+  padding-block-start: 2px;
+}
+
+.button-border {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--main-border);
+  padding-block: 10px;
+  background-color: var(--bg-color);
+  inline-size: 100%;
+}
+
+.button-border::before {
+  content: '';
+  position: absolute;
+  display: block;
+  transform: scaleX(0);
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  transform-origin: left;
+  transition: transform var(--duration-medium) ease-in-out;
+  background-color: var(--mix-blend-color);
+  mix-blend-mode: difference;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.button-border:hover::before {
+  transform: scaleX(1);
+}
+
+.button-border:focus-visible {
+  box-shadow: 2px 2px 0 var(--accent-color);
+}
+
+.card__like-button {
+  inline-size: unset;
+  padding-inline: 35px;
+}
+
+.button__text {
+  font-family: var(----accent-font, 'PressStart2P-Regular'), sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 0.9;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--mix-blend-color);
+  mix-blend-mode: difference;
+}
+
+.save__button {
+  gap: 8px;
+  inline-size: var(--safe-button-size);
+  padding-block: 16px;
+  margin-block-end: 100px;
+  overflow: hidden;
+}
+
+.save__button .floppy-icon {
+  width: 21px;
+  height: 21px;
+}
+
+/* ----- Dialog ----- */
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-inline-size: var(--dialog-max-width);
+  padding-block: 30px;
+  padding-inline: var(--dialog-padding-inline);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: var(--main-border);
+  gap: 30px;
+}
+
+.dialog:not([open]) {
+  display: none;
+}
+
+.dialog .floppy-icon {
+  flex: none;
+}
+
+.dialog__message {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-transform: uppercase;
+}
+
+.dialog__message-text {
+  font-family: var(----accent-font, 'PressStart2P-Regular'), sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: inherit;
+}
+
+.dialog__ok-button {
+  inline-size: 100%;
+}
+
+.dialog::backdrop {
+  background-color: var(--dialog-backdrop-color);
+}
+
+/* ----- FILTERS ----- */
+
+.filter-booster {
+  filter: brightness(1.25) contrast(1.25) saturate(1.4);
+}
+
+.filter-retro {
+  filter: sepia(70%) brightness(0.9) blur(1px);
+}
+
+.filter-mystical {
+  filter: blur(3px) saturate(2);
+}
+
+.filter-steel {
+  filter: hue-rotate(210deg) saturate(1.4) brightness(1.15);
+}
+
+.filter-neon-glow {
+  filter: saturate(2) brightness(1.3) hue-rotate(90deg);
+}
+
+.filter-icy {
+  filter: grayscale(0.8) brightness(1.8) opacity(0.7);
+}
+
+.filter-invert {
+  filter: invert(1) contrast(1.5);
+}
+
+.filter-green {
+  filter: brightness(1.5) hue-rotate(275deg);
+}
+
+/* ----- FOR MOBILE SIZE ----- */
+
+@media (width<=375px) {
+  .page {
+    max-inline-size: var(--max-inline-size-small);
+  }
+  .header__logo-group__link {
+    font-size: var(--header-logo-font-size-small);
+  }
+  .save__button {
+    flex-direction: column;
+  }
+  .save__button .floppy-icon {
+    width: 28px;
+    height: 28px;
+  }
+  .dialog {
+    max-inline-size: var(--dialog-max-width-small);
+    padding-inline: var(--dialog-padding-inline-small);
+  }
 }

@@ -6,9 +6,122 @@
 ✦ like-icon — для svg-иконки анимированного сердца
 ✦ card__like-button — для кнопки Like рядом с иконкой
 ✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 */
+
+/* ----- ARROW ----- */
+
+.theme-menu__button:disabled::before {
+  /* animation: [-name] [-duration] [-timing-function] [-iteration-count] [-direction]; */
+  /* ease-in-out - Анимация начинается и заканчивается медленно, ускоряясь в середине */
+  animation: arrow var(--duration-medium) ease-in-out infinite alternate;
+}
+
+@keyframes arrow {
+  from {
+    margin-inline-start: 0;
+  }
+
+  to {
+    margin-inline-start: 4px;
+  }
+}
+
+/* ----- HEART ----- */
+
+.contour {
+  transition: fill var(--duration-quick) linear;
+}
+
+.core {
+  fill: transparent;
+  transition: fill var(--duration-small) linear var(--delay-small);
+}
+
+.main-body {
+  fill: transparent;
+  transition: fill var(--duration-small) linear;
+}
+
+.sparks {
+  opacity: 0;
+}
+
+/* --- HEART hover --- */
+
+.like-icon:hover .core {
+  fill: var(--heart-contour-color);
+  transition: fill var(--duration-small) linear;
+}
+
+.like-icon:hover .main-body {
+  fill: var(--heart-contour-color);
+  transition: fill var(--duration-small) linear var(--delay-medium);
+}
+
+/* --- HEART active --- */
+
+.like-icon:active .core {
+  fill: var(--heart-body-color);
+  transition: fill var(--duration-small) linear;
+}
+
+.like-icon:active .main-body {
+  fill: var(--heart-body-color);
+  transition: fill var(--duration-small) linear var(--delay-medium);
+}
+
+/* --- HEART press --- */
+
+.like-icon.is-liked .core {
+  fill: var(--heart-body-color);
+  transition: fill var(--duration-small) linear;
+}
+
+.like-icon.is-liked .main-body {
+  fill: var(--heart-body-color);
+  transition: fill var(--duration-small) linear var(--delay-medium);
+}
+
+.like-icon.is-liked .contour {
+  fill: var(--heart-body-color);
+  transition: fill var(--duration-small) linear var(--delay-medium-plus);
+}
+
+/* heart - группа элементов (contour, core, main-body) */
+.like-icon.is-liked .heart {
+  transform-origin: center;
+  /* animation: [-name] [-duration] [-timing-function] [-delay] [-iteration-count] [-direction]; */
+  /* ease-in: начинается медленно, ускоряется к концу. */
+  animation: icon-scale var(--duration-small) ease-in var(--delay-long) 1
+    alternate;
+}
+
+.like-icon.is-liked .sparks {
+  fill: var(--heart-body-color);
+  animation: sparks-opacity var(--duration-small) ease-in var(--duration-small)
+    1 alternate;
+}
+
+@keyframes sparks-opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes icon-scale {
+  from {
+    scale: 1;
+  }
+
+  to {
+    scale: 1.5;
+  }
+}
