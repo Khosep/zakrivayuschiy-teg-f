@@ -1,0 +1,31 @@
+{
+  "name": "yp_front_spr3",
+  "version": "1.0.0",
+  "description": "slozhno-sosredotochitsya",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "prettier --check './**/*.{html,css,js}'",
+    "format": "prettier --write './**/*.{html,css,js}'",
+    "formatFile": "prettier --write",
+    "formatHTML": "prettier --write './**/*.html'",
+    "lint": "stylelint '**/*.css'",
+    "lintFix": "stylelint '**/*.css' --fix",
+    "checkAll": "npm run check && npm run lint",
+    "fixAll": "npm run format && npm run lintFix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Khosep/slozhno-sosredotochitsya.git"
+  },
+  "author": "Kholkin Sergey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Khosep/slozhno-sosredotochitsya/issues"
+  },
+  "homepage": "https://github.com/Khosep/slozhno-sosredotochitsya#readme",
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "stylelint": "^16.8.2"
+  }
+}
