@@ -17,7 +17,10 @@
   min-inline-size: 320px;
   min-block-size: 100dvb;
   max-inline-size: var(--max-inline-size);
-  background: fixed var(--bg-image) var(--bg-color) center / cover;
+  /* - ! НЕ РАБОТАЕТ 'fixed' в 'background' */
+  /*   background: fixed var(--bg-image) var(--bg-color) center / cover; */
+  background: var(--bg-image) var(--bg-color) center / cover;
+  background-attachment: fixed;
   font-family: var(--main-font, Inter-Variable), sans-serif;
   font-variation-settings: 'wght' var(--card-font-weight-text, 400);
   color: var(--text-color);
@@ -33,7 +36,7 @@
   margin-block: var(--header-margin-block);
   padding-block: var(--header-padding-block);
   background-color: var(--bg-color);
-  font-family: var(--accent-font, PressStart2P-Regular), sans-serif;
+  font-family: var(--accent-font, PressStart2P-Regular), fantasy;
   font-weight: 400;
   line-height: 1;
 }
@@ -79,6 +82,7 @@
 .theme-menu__button,
 .theme-menu__button:hover,
 .theme-menu__button:focus-visible,
+.card__icon-button:focus-visible,
 .button-border,
 .button-border:hover,
 .button-border:focus-visible {
@@ -131,7 +135,7 @@
 .cards__list {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 51px;
 }
 
 .cards__item {
@@ -159,14 +163,28 @@
   inset-block-start: 25px;
   inset-inline-end: var(--card_label-right-position);
   z-index: 1;
-  font-family: var(----accent-font, 'PressStart2P-Regular'), sans-serif;
+  font-family: var(--accent-font, 'PressStart2P-Regular'), fantasy;
   font-weight: 400;
   font-size: 14px;
   line-height: 1;
   background-color: transparent;
   mix-blend-mode: hard-light;
   opacity: 0.5;
-  -webkit-text-stroke: 1px var(--card-label-stroke-color);
+  /* Фолбэк */
+  text-shadow:
+    1px 1px var(--card-label-stroke-color),
+    1px -1px var(--card-label-stroke-color),
+    -1px 1px var(--card-label-stroke-color),
+    -1px -1px var(--card-label-stroke-color);
+}
+
+@supports (-webkit-text-stroke: 1px var(--card-label-stroke-color)) or
+  (text-stroke: 1px var(--card-label-stroke-color)) {
+  .card_label {
+    -webkit-text-stroke: 1px var(--card-label-stroke-color);
+    text-stroke: 1px var(--card-label-stroke-color);
+    text-shadow: none;
+  }
 }
 
 .card_image {
@@ -181,7 +199,8 @@
 .cards__item__content {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 24px;
+  padding: 25px 25px 23px;
 }
 
 .cards__item__content-text-block {
@@ -189,8 +208,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 27px;
-  /*   padding: 23px 25px 25px; */
-  padding: 25px;
 }
 
 .card__text {
@@ -203,13 +220,16 @@
   align-items: center;
   justify-content: end;
   gap: 6px;
-  padding-inline-end: 25px;
-  padding-block-end: 25px;
 }
 
 .card__icon-button {
   display: flex;
-  padding-block-start: 2px;
+  border: 2px solid transparent;
+  transition: var(--duration-small);
+}
+
+.card__icon-button:focus-visible {
+  border: var(--main-border);
 }
 
 .button-border {
@@ -218,7 +238,7 @@
   align-items: center;
   justify-content: center;
   border: var(--main-border);
-  padding-block: 10px;
+  padding-block: 11.5px;
   background-color: var(--bg-color);
   inline-size: 100%;
 }
@@ -252,7 +272,7 @@
 }
 
 .button__text {
-  font-family: var(----accent-font, 'PressStart2P-Regular'), sans-serif;
+  font-family: var(--accent-font, 'PressStart2P-Regular'), fantasy;
   font-weight: 400;
   font-size: 14px;
   line-height: 0.9;
@@ -283,7 +303,7 @@
   align-items: center;
   justify-content: center;
   max-inline-size: var(--dialog-max-width);
-  padding-block: 30px;
+  padding-block: 30px 28px;
   padding-inline: var(--dialog-padding-inline);
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -307,7 +327,7 @@
 }
 
 .dialog__message-text {
-  font-family: var(----accent-font, 'PressStart2P-Regular'), sans-serif;
+  font-family: var(--accent-font, 'PressStart2P-Regular'), fantasy;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
@@ -316,6 +336,7 @@
 
 .dialog__ok-button {
   inline-size: 100%;
+  text-transform: uppercase;
 }
 
 .dialog::backdrop {
